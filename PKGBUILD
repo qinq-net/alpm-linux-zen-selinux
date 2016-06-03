@@ -1,18 +1,18 @@
-# $Id: PKGBUILD 267928 2016-05-13 18:47:34Z heftig $
+# $Id$
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 # Contributor: Tobias Powalowski <tpowa@archlinux.org>
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
-pkgbase=linux-zen-selinux   # Build -zen kernel
+pkgbase=linux-zen-selinux   # Build -zen-selinux kernel
 #pkgbase=linux-custom       # Build kernel with a different name
-_srcname=linux-4.5
-_zenpatch=zen-4.5.4-0e6f3784431a3c624eaaa00217de426c470e741d.diff
-pkgver=4.5.4
+_srcname=linux-4.6
+_zenpatch=zen-4.6.1-1e19a2f12a4639856d0304ca7dd3eda5868149f8.diff
+pkgver=4.6.1
 pkgrel=1
 arch=('i686' 'x86_64')
 url="https://github.com/zen-kernel/zen-kernel"
 license=('GPL2')
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc')
+makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
 source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         "https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.sign"
@@ -25,18 +25,16 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         # standard config files for mkinitcpio ramdisk
         'linux.preset'
         'change-default-console-loglevel.patch')
-sha256sums=('a40defb401e01b37d6b8c8ad5c1bbab665be6ac6310cdeed59950c96b31a519c'
+sha256sums=('a93771cd5a8ad27798f22e9240538dfea48d3a2bf2a6a6ab415de3f02d25d866'
             'SKIP'
-            '6a9cfe691ac77346c48b7f83375a1880ebb379594de1000acad45da45d711e42'
+            '023d192ebb487657ce24cbd758c8a6cfcb66a26c61b4e0f2395528953c45da9b'
             'SKIP'
-            'afb1e305fde0a46615634850a22be594cdc28891c6dbdf0321524b06c64fe52b'
+            '8102ee880a14a08902771b2dc9a7a75815d5da22b3efa392157274a14537833e'
             'SKIP'
-            '19def9d047de02a089aaf97664a903fce5c339a684c0fe506e85a69f6ac237d8'
-            '0b4e0d77e12f81ac6ab2c23ea49392992c20d0c7fc447fca096430392b92cde9'
+            '1002044f1f83718b5de2292a09629d212107f1398212f41b43623aa4269db738'
+            '82ee9ab5a66e401a2607f0f08cb90e8405dc2d0a0bcf9e4abe1ab49bd971f816'
             'efa2ee0d50d96c49e9ced4c66eeade4fe4470066d6004721d282a40180dc024b'
-#            'c312718d978176347d1094c5e0317cfe1dc73c6c2b8fb3677ead2c732c2ef32e'
-#            '92fd527086f962bd7d587f8e2cb1cab742f434b3ca71102b72f2a14bf0ed82bb'
-#            'f0d90e756f14533ee67afda280500511a62465b4f76adcc5effa95a40045179c'
+
             '1256b241cd477b265a3c2d64bdc19ffe3c9bbcee82ea3994c590c2c76e767d99')
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
@@ -183,7 +181,7 @@ _package-headers() {
   mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/include"
 
   for i in acpi asm-generic config crypto drm generated keys linux math-emu \
-    media net pcmcia scsi sound trace uapi video xen; do
+    media net pcmcia scsi soc sound trace uapi video xen; do
     cp -a include/${i} "${pkgdir}/usr/lib/modules/${_kernver}/build/include/"
   done
 
@@ -264,6 +262,12 @@ _package-headers() {
     mkdir -p "${pkgdir}"/usr/lib/modules/${_kernver}/build/`echo ${i} | sed 's|/Kconfig.*||'`
     cp ${i} "${pkgdir}/usr/lib/modules/${_kernver}/build/${i}"
   done
+
+  # add objtool for external module building and enabled VALIDATION_STACK option
+  if [ -f tools/objtool/objtool ];  then
+      mkdir -p "${pkgdir}/usr/lib/modules/${_kernver}/build/tools/objtool"
+      cp -a tools/objtool/objtool ${pkgdir}/usr/lib/modules/${_kernver}/build/tools/objtool/ 
+  fi
 
   chown -R root.root "${pkgdir}/usr/lib/modules/${_kernver}/build"
   find "${pkgdir}/usr/lib/modules/${_kernver}/build" -type d -exec chmod 755 {} \;
