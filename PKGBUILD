@@ -1,13 +1,13 @@
-# $Id$
+# $Id: PKGBUILD 274100 2016-08-20 21:10:22Z heftig $
 # Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 # Contributor: Tobias Powalowski <tpowa@archlinux.org>
 # Contributor: Thomas Baechler <thomas@archlinux.org>
 
-pkgbase=linux-zen-selinux   # Build -zen-selinux kernel
+pkgbase=linux-zen-selinux   # Build -zen kernel
 #pkgbase=linux-custom       # Build kernel with a different name
-_srcname=linux-4.6
-_zenpatch=zen-4.6.1-1e19a2f12a4639856d0304ca7dd3eda5868149f8.diff
-pkgver=4.6.1
+_srcname=linux-4.7
+_zenpatch=zen-4.7.2-3bc2dfc4bccf23e17f0988c3f03af91a2a18a2a0.diff
+pkgver=4.7.2
 pkgrel=1
 arch=('i686' 'x86_64')
 url="https://github.com/zen-kernel/zen-kernel"
@@ -25,16 +25,15 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         # standard config files for mkinitcpio ramdisk
         'linux.preset'
         'change-default-console-loglevel.patch')
-sha256sums=('a93771cd5a8ad27798f22e9240538dfea48d3a2bf2a6a6ab415de3f02d25d866'
+sha256sums=('5190c3d1209aeda04168145bf50569dc0984f80467159b1dc50ad731e3285f10'
             'SKIP'
-            '023d192ebb487657ce24cbd758c8a6cfcb66a26c61b4e0f2395528953c45da9b'
+            '031cb0e7b86f2ef2cc4d0dde9d73495f68e8d23e4c41f50f7f95b065ee33a71d'
             'SKIP'
-            '8102ee880a14a08902771b2dc9a7a75815d5da22b3efa392157274a14537833e'
+            '4573c5f857ae868841b8083d642e96af38e1a35f0e806f6fac69945be7430458'
             'SKIP'
-            '1002044f1f83718b5de2292a09629d212107f1398212f41b43623aa4269db738'
-            '82ee9ab5a66e401a2607f0f08cb90e8405dc2d0a0bcf9e4abe1ab49bd971f816'
+            '7f2e1e937c75f52dfb82ff6bd80d0c3848e7b4d4b09bdcd3b968613d0dd913b6'
+            '5ae14f6d808030322555b9ac9dc22ee96ca7ef50fa2f12bd924c93e5fc9c6ef7'
             'efa2ee0d50d96c49e9ced4c66eeade4fe4470066d6004721d282a40180dc024b'
-
             '1256b241cd477b265a3c2d64bdc19ffe3c9bbcee82ea3994c590c2c76e767d99')
 validpgpkeys=(
               'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
@@ -91,13 +90,6 @@ prepare() {
 
   # rewrite configuration
   yes "" | make config >/dev/null
-  
-  # save configuration for later reuse
-  if [ "${CARCH}" = "x86_64" ]; then
-    cat .config > "${startdir}/config.x86_64.last"
-  else
-    cat .config > "${startdir}/config.last"
-  fi
 }
 
 build() {
