@@ -6,9 +6,9 @@
 pkgbase=linux-zen-selinux   # Build -zen kernel
 #pkgbase=linux-custom       # Build kernel with a different name
 _srcname=linux-4.7
-_zenpatch=zen-4.7.2-3bc2dfc4bccf23e17f0988c3f03af91a2a18a2a0.diff
-pkgver=4.7.2
-pkgrel=1
+_zenpatch=zen-4.7.3-82014da197e1762e424cdef63a703dba7735ffe3.diff
+pkgver=4.7.3
+pkgrel=2
 arch=('i686' 'x86_64')
 url="https://github.com/zen-kernel/zen-kernel"
 license=('GPL2')
@@ -24,15 +24,16 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         'config' 'config.x86_64'
         # standard config files for mkinitcpio ramdisk
         'linux.preset'
-        'change-default-console-loglevel.patch')
+        'change-default-console-loglevel.patch'
+        )
 sha256sums=('5190c3d1209aeda04168145bf50569dc0984f80467159b1dc50ad731e3285f10'
             'SKIP'
-            '031cb0e7b86f2ef2cc4d0dde9d73495f68e8d23e4c41f50f7f95b065ee33a71d'
+            '826b96e794d325abf430e8d6c3279a21e97e3ec321a3962b9dd6966693b14d88'
             'SKIP'
-            '4573c5f857ae868841b8083d642e96af38e1a35f0e806f6fac69945be7430458'
+            '0064be0bf4fbca003559e6d2cd5feb088ac6e72870d6b9f247f904fe2ba12416'
             'SKIP'
-            '7f2e1e937c75f52dfb82ff6bd80d0c3848e7b4d4b09bdcd3b968613d0dd913b6'
-            '5ae14f6d808030322555b9ac9dc22ee96ca7ef50fa2f12bd924c93e5fc9c6ef7'
+            '41b841b71cd4e046a8f62a203117b7b98a2d91760a3d012aaf05d7385c1ff4b2'
+            '5d41ca03d3578ddb1b6513cedfa004ad60824afc3c0da28a11c298ebc08710e8'
             'efa2ee0d50d96c49e9ced4c66eeade4fe4470066d6004721d282a40180dc024b'
             '1256b241cd477b265a3c2d64bdc19ffe3c9bbcee82ea3994c590c2c76e767d99')
 validpgpkeys=(
