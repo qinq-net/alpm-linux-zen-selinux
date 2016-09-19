@@ -6,9 +6,9 @@
 pkgbase=linux-zen-selinux   # Build -zen kernel
 #pkgbase=linux-custom       # Build kernel with a different name
 _srcname=linux-4.7
-_zenpatch=zen-4.7.3-82014da197e1762e424cdef63a703dba7735ffe3.diff
-pkgver=4.7.3
-pkgrel=2
+_zenpatch=zen-4.7.4-161c27d61398cd0af1ee2f559fdba024aa10c3ef.diff
+pkgver=4.7.4
+pkgrel=1
 arch=('i686' 'x86_64')
 url="https://github.com/zen-kernel/zen-kernel"
 license=('GPL2')
@@ -28,9 +28,9 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         )
 sha256sums=('5190c3d1209aeda04168145bf50569dc0984f80467159b1dc50ad731e3285f10'
             'SKIP'
-            '826b96e794d325abf430e8d6c3279a21e97e3ec321a3962b9dd6966693b14d88'
+            'a7e9415d35cee130f2ea5ae4edc652d4be784d9bbfd77e850f1e999f812b2116'
             'SKIP'
-            '0064be0bf4fbca003559e6d2cd5feb088ac6e72870d6b9f247f904fe2ba12416'
+            '5dc618500c1150afff9ff89123a0e18c369f76a06da7733be57cd9a063cc22a4'
             'SKIP'
             '41b841b71cd4e046a8f62a203117b7b98a2d91760a3d012aaf05d7385c1ff4b2'
             '5d41ca03d3578ddb1b6513cedfa004ad60824afc3c0da28a11c298ebc08710e8'
