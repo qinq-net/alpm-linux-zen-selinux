@@ -5,10 +5,10 @@
 
 pkgbase=linux-zen-selinux   # Build -zen kernel
 #pkgbase=linux-custom       # Build kernel with a different name
-_srcname=linux-4.7
-_zenpatch=zen-4.7.5-ab3b46a5d9cc0b216081d354a42523f7d3ed3dd1.diff
-pkgver=4.7.5
-pkgrel=1
+_srcname=linux-4.8
+_zenpatch=zen-4.8-401f5ba29a7976d80c010d2aea7a90e9a5fa6f1c.diff
+pkgver=4.8
+pkgrel=1.1
 arch=('i686' 'x86_64')
 url="https://github.com/zen-kernel/zen-kernel"
 license=('GPL2')
@@ -16,8 +16,8 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'libelf')
 options=('!strip')
 source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         "https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.sign"
-        "https://www.kernel.org/pub/linux/kernel/v4.x/patch-${pkgver}.xz"
-        "https://www.kernel.org/pub/linux/kernel/v4.x/patch-${pkgver}.sign"
+        #"https://www.kernel.org/pub/linux/kernel/v4.x/patch-${pkgver}.xz"
+        #"https://www.kernel.org/pub/linux/kernel/v4.x/patch-${pkgver}.sign"
         "http://pkgbuild.com/~heftig/zen-patches/${_zenpatch}.xz"
         "http://pkgbuild.com/~heftig/zen-patches/${_zenpatch}.sign"
         # the main kernel config files
@@ -26,14 +26,12 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         'linux.preset'
         'change-default-console-loglevel.patch'
         )
-sha256sums=('5190c3d1209aeda04168145bf50569dc0984f80467159b1dc50ad731e3285f10'
+sha256sums=('3e9150065f193d3d94bcf46a1fe9f033c7ef7122ab71d75a7fb5a2f0c9a7e11a'
             'SKIP'
-            '46be737415406fd06c1067d1280a4a435f8b0a76d70f5d31858964b41367cc8e'
+            '838771244dd5e15d8587732e796af0b0f9016998ee365f32dcf5343735fe2258'
             'SKIP'
-            '480670e216e630306e671ec3954a26820d5e5e5d6344f4d5528fcec032d42411'
-            'SKIP'
-            '41b841b71cd4e046a8f62a203117b7b98a2d91760a3d012aaf05d7385c1ff4b2'
-            '5d41ca03d3578ddb1b6513cedfa004ad60824afc3c0da28a11c298ebc08710e8'
+            'ce66cf02e916a8fc13cb3a44483292b6f4ada63094b4ddb8f29bb4cdd93ab01c'
+            'ac4ae626f681b3bce717911f60c77618697b0f07d3f688a892127f0f2fbf58f2'
             'efa2ee0d50d96c49e9ced4c66eeade4fe4470066d6004721d282a40180dc024b'
             '1256b241cd477b265a3c2d64bdc19ffe3c9bbcee82ea3994c590c2c76e767d99')
 validpgpkeys=(
@@ -48,7 +46,7 @@ prepare() {
   cd "${srcdir}/${_srcname}"
 
   # add upstream patch
-  patch -p1 -i "${srcdir}/patch-${pkgver}"
+  #patch -p1 -i "${srcdir}/patch-${pkgver}"
 
   # add latest fixes from stable queue, if needed
   # http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
