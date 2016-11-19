@@ -6,9 +6,9 @@
 pkgbase=linux-zen-selinux   # Build -zen kernel
 #pkgbase=linux-custom       # Build kernel with a different name
 _srcname=linux-4.8
-_zenpatch=zen-4.8.6-098f02f33b213d30ded7da895393c6928c8d8cfd.diff
-pkgver=4.8.6
-pkgrel=1
+_zenpatch=zen-4.8.8-6db7cb960e00f72970b0522ed7499836262ca6da.diff
+pkgver=4.8.8
+pkgrel=2
 arch=('i686' 'x86_64')
 url="https://github.com/zen-kernel/zen-kernel"
 license=('GPL2')
@@ -18,10 +18,12 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
         "https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.sign"
         "https://www.kernel.org/pub/linux/kernel/v4.x/patch-${pkgver}.xz"
         "https://www.kernel.org/pub/linux/kernel/v4.x/patch-${pkgver}.sign"
-        "http://pkgbuild.com/~heftig/zen-patches/${_zenpatch}.xz"
-        "http://pkgbuild.com/~heftig/zen-patches/${_zenpatch}.sign"
+        "https://pkgbuild.com/~heftig/zen-patches/${_zenpatch}.xz"
+        "https://pkgbuild.com/~heftig/zen-patches/${_zenpatch}.sign"
         # the main kernel config files
         'config' 'config.x86_64'
+        # pacman hook for initramfs regeneration
+        '80-linux.hook'
         # standard config files for mkinitcpio ramdisk
         'linux.preset'
         'change-default-console-loglevel.patch'
@@ -29,12 +31,13 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
 
 sha256sums=('3e9150065f193d3d94bcf46a1fe9f033c7ef7122ab71d75a7fb5a2f0c9a7e11a'
             'SKIP'
-            '3ac0ea443ac8a7aa40f8d5ce8ec33b84abbad4dbfc567c7699df728c2c21df37'
+            '588b6537cb660c2f7d483aca13f7509a5fc86c60df32c167d40e81d6c7ab4f9c'
             'SKIP'
-            '0cd35800f8ede7ba8a3276019d24a556e39589ccb80c5db76f54de21e0ecb05d'
+            'a2591d37497a85fea60b89094882bdb17cc73ff44cbdf2c48960331131e75f44'
             'SKIP'
             'bb54db2924c92002f8a5c25ece9f719bfd184485b0bad7e01623323111d7a8a9'
             '9821072663d3f511a294e1002bd904123a2c1049d492d42218281667ceb4e436'
+            '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'efa2ee0d50d96c49e9ced4c66eeade4fe4470066d6004721d282a40180dc024b'
             '1256b241cd477b265a3c2d64bdc19ffe3c9bbcee82ea3994c590c2c76e767d99')
 validpgpkeys=(
