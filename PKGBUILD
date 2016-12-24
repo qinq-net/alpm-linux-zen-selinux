@@ -6,9 +6,8 @@
 pkgbase=linux-zen-selinux   # Build -zen kernel
 #pkgbase=linux-custom       # Build kernel with a different name
 _srcname=linux-4.8
-#_zenpatch=zen-4.8.8-6db7cb960e00f72970b0522ed7499836262ca6da.diff
-_zenpatch=zen-4.8.9-4b32fc67f031534e240f26a9e43ddd468c4aca2b.diff
-pkgver=4.8.9
+_zenpatch=zen-4.8.11-7b525dd42695cce13515aace18698c5af3ec25b5.diff
+pkgver=4.8.11
 pkgrel=1
 arch=('i686' 'x86_64')
 url="https://github.com/zen-kernel/zen-kernel"
@@ -32,12 +31,12 @@ source=("https://www.kernel.org/pub/linux/kernel/v4.x/${_srcname}.tar.xz"
 
 sha256sums=('3e9150065f193d3d94bcf46a1fe9f033c7ef7122ab71d75a7fb5a2f0c9a7e11a'
             'SKIP'
-            '9f3c1924080a16ac2b8f054aa9d0490bc0ee4c6159e2fd10e5f6732b2e9604f6'
+            '53d84946cbe641a2a74ed6cbdd35840bb4947cefd34a764c31b7dac5cde5c696'
             'SKIP'
-            'e59205f72c3a260744751974653ac3936abf4621d01eb1218608fc44dce0a5dd'
+            '3611b9eed07abcc5f81a3c14ba7bf8fd26a17ec80dd7b9bb15b20c66e7a6d7d2'
             'SKIP'
-            'bb54db2924c92002f8a5c25ece9f719bfd184485b0bad7e01623323111d7a8a9'
-            '9821072663d3f511a294e1002bd904123a2c1049d492d42218281667ceb4e436'
+            '7470c9d73f6375681b54c154ecd7f9d11978dedfa227cb28e5ab9fb9f4481173'
+            'e88916206a5d356ad1676a3d41d044e10e700fdd7f6992659216420eea874a40'
             '834bd254b56ab71d73f59b3221f056c72f559553c04718e350ab2a3e2991afe0'
             'efa2ee0d50d96c49e9ced4c66eeade4fe4470066d6004721d282a40180dc024b'
             '1256b241cd477b265a3c2d64bdc19ffe3c9bbcee82ea3994c590c2c76e767d99')
